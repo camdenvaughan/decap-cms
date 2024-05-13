@@ -420,6 +420,7 @@ export interface CmsConfig {
   };
   error: string | undefined;
   isFetching: boolean;
+  themes: Theme[];
 }
 
 export type CmsMediaLibraryOptions = unknown; // TODO: type properly
@@ -809,4 +810,18 @@ export interface EditorialWorkflowAction extends Action<string> {
     slug: string;
     newStatus: string;
   };
+}
+
+export interface Theme {
+  name: string;
+  background_color: string;
+  background_light_accent: string;
+  background_dark_accent: string;
+  background_contrast: string;
+  font_color: string;
+  font_light_accent: string;
+  font_dark_accent: string;
+  info_error: string;
+  info_warning: string;
+  info_success: string;
 }

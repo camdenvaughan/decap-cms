@@ -1,5 +1,6 @@
 import React from 'react';
 import { css, Global } from '@emotion/react';
+import { config } from 'decap-cms-lib-util';
 
 /**
  * Font Stacks
@@ -52,6 +53,16 @@ const colorsRaw = {
   tealLight: '#ddf5f9',
 };
 
+const colorVars = {
+  backgroundColor: 'var(--background-color)',
+  backgroundLightAccent: 'var(--background-light-accent)',
+  backgroundDarkAccent: 'var(--background-dark-accent)',
+  backgroundContrast: 'var(--background-contrast)',
+  fontColor: 'var(--font-color)',
+  fontLightAccent: 'var(--font-light-accent)',
+  fontDarkAccent: 'var(--font-dark-accent)',
+}
+
 const colors = {
   statusDraftText: colorsRaw.purple,
   statusDraftBackground: colorsRaw.purpleLight,
@@ -59,17 +70,17 @@ const colors = {
   statusReviewBackground: colorsRaw.yellow,
   statusReadyText: colorsRaw.green,
   statusReadyBackground: colorsRaw.greenLight,
-  text: colorsRaw.gray,
-  textLight: colorsRaw.white,
-  textLead: colorsRaw.grayDark,
-  background: colorsRaw.grayLight,
-  foreground: colorsRaw.white,
+  text: colorVars.fontColor,
+  textLight: colorVars.fontLightAccent,
+  textLead: colorVars.fontDarkAccent,
+  background: colorVars.backgroundColor,
+  foreground: colorVars.backgroundDarkAccent,
   active: colorsRaw.blue,
   activeBackground: colorsRaw.blueLight,
   inactive: colorsRaw.gray,
   button: colorsRaw.grayDark,
   buttonText: colorsRaw.white,
-  inputBackground: colorsRaw.white,
+  inputBackground: colorVars.backgroundContrast,
   infoText: colorsRaw.blue,
   infoBackground: colorsRaw.blueLight,
   successText: colorsRaw.green,
@@ -177,7 +188,7 @@ const textBadge = css`
 const card = css`
   ${shadows.dropMain};
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${colorVars.backgroundLightAccent};
 `;
 
 const buttons = {
@@ -450,6 +461,67 @@ function GlobalStyles() {
 
         input {
           border: 0;
+        }
+
+        :root {
+          --background-color: --lm-background-color;
+          --background-light-accent: --lm-background-light-accent;
+          --background-dark-accent: --lm-background-light-accent;
+          --background-contrast: --lm-background-contrast;
+          --font-color: --lm-font-color;
+          --font-light-accent: --lm-font-light-accent;
+          --font-dark-accent: --lm-font-dark-accent;
+
+
+          --lm-background-color: #D9D9D9;
+          --lm-background-light-accent: #b8b8b8;
+          --lm-background-dark-accent: #8d8d8d;
+          --lm-background-contrast: #000;
+          --lm-font-color: #798291;
+          --lm-font-light-accent: #fff;
+          --lm-font-dark-accent: #313d3e;
+
+          --dm-background-color: #313131;
+          --dm-background-light-accent: #404041;
+          --dm-background-dark-accent: #363636;
+          --dm-background-contrast: #fff;
+          --dm-font-color: #d1d1d1;
+          --dm-font-light-accent: #8d8d8d;
+          --dm-font-dark-accent: #fff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --background-color: var(--dm-background-color);
+            --background-light-accent: var(--dm-background-light-accent);
+            --background-dark-accent: var(--dm-background-light-accent);
+            --background-contrast: var(--dm-background-contrast);
+            --font-color: var(--dm-font-color);
+            --font-light-accent: var(--dm-font-light-accent);
+            --font-dark-accent: var(--dm-font-dark-accent);
+            color-scheme: dark;
+          }
+        }
+        
+        [data-theme="dark"] {
+          --background-color: var(--dm-background-color);
+          --background-light-accent: var(--dm-background-light-accent);
+          --background-dark-accent: var(--dm-background-light-accent);
+          --background-contrast: var(--dm-background-contrast);
+          --font-color: var(--dm-font-color);
+          --font-light-accent: var(--dm-font-light-accent);
+          --font-dark-accent: var(--dm-font-dark-accent);
+          color-scheme: dark;
+        }
+        [data-theme="light"] {
+          --background-color: var(--lm-background-color);
+          --background-light-accent: var(--lm-background-light-accent);
+          --background-dark-accent: var(--lm-background-light-accent);
+          --background-contrast: var(--lm-background-contrast);
+          --font-color: var(--lm-font-color);
+          --font-light-accent: var(--lm-font-light-accent);
+          --font-dark-accent: var(--lm-font-dark-accent);
+          color-scheme: light;
         }
 
         body {
