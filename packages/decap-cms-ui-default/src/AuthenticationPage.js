@@ -95,7 +95,6 @@ function AuthenticationPage({
         </LoginButton>
       )}
       {siteUrl && <GoBackButton href={siteUrl} t={t} />}
-      {logoUrl ? <NetlifyCreditIcon size="100px" type="decap-cms" /> : null}
     </StyledAuthenticationPage>
   );
 }

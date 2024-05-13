@@ -2,7 +2,7 @@ backend:
   name: test-repo
 
 site_url: https://example.com
-
+logo_path: /logo.svg
 publish_mode: editorial_workflow
 media_folder: assets/uploads
 
