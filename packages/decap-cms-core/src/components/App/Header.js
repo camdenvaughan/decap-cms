@@ -23,7 +23,7 @@ import { checkBackendStatus } from '../../actions/status';
 
 const styles = {
   buttonActive: css`
-    color: ${colors.active};
+    color: ${colors.button};
   `,
 };
 
@@ -56,7 +56,7 @@ const AppHeaderContent = styled.div`
 const AppHeaderButton = styled.button`
   ${buttons.button};
   background: none;
-  color: #7b8290;
+  color: ${colors.headerContent};
   font-family: inherit;
   font-size: 16px;
   font-weight: 500;

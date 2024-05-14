@@ -91,7 +91,7 @@ const ToolbarContainer = styled.div`
   width: 100%;
   min-width: 800px;
   z-index: ${zIndex.zIndex300};
-  background-color: #fff;
+  background-color: ${colors.foreground};
   height: 66px;
   display: flex;
   justify-content: space-between;
@@ -122,7 +122,7 @@ const ToolbarSectionBackLink = styled(Link)`
 
   &:hover,
   &:focus {
-    background-color: #f1f2f4;
+    background-color: ${colors.background};
   }
 `;
 
@@ -206,13 +206,13 @@ const StatusButton = styled(DropdownButton)`
 
 const PreviewButtonContainer = styled.div`
   margin-right: 12px;
-  color: ${colorsRaw.blue};
+  color: ${colorsRaw.active};
   display: flex;
   align-items: center;
 
   a,
   ${Icon} {
-    color: ${colorsRaw.blue};
+    color: ${colors.button};
   }
 
   ${Icon} {

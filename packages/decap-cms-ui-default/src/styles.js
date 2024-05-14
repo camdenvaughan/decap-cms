@@ -32,15 +32,20 @@ const fonts = {
 /**
  * Theme Colors
  */
+
 const colorsRaw = {
   white: '#fff',
+  black: '#000',
   grayLight: '#eff0f4',
   gray: '#798291',
   grayDark: '#313d3e',
   blue: '#3a69c7',
   blueLight: '#e8f5fe',
+  blueGray: '#7b8290',
+  blueVibrant: '#00a5ff',
   green: '#005614',
   greenLight: '#caef6f',
+  greenVibrant: '#6eff90',
   brown: '#754e00',
   yellow: '#ffee9c',
   red: '#ff003b',
@@ -53,15 +58,34 @@ const colorsRaw = {
   tealLight: '#ddf5f9',
 };
 
-const colorVars = {
-  backgroundColor: 'var(--background-color)',
-  backgroundLightAccent: 'var(--background-light-accent)',
-  backgroundDarkAccent: 'var(--background-dark-accent)',
-  backgroundContrast: 'var(--background-contrast)',
-  fontColor: 'var(--font-color)',
-  fontLightAccent: 'var(--font-light-accent)',
-  fontDarkAccent: 'var(--font-dark-accent)',
-}
+const rawLightMode = 
+  `--lm-background-color: ${colorsRaw.grayLight};
+  --lm-background-light-accent: ${colorsRaw.white};
+  --lm-background-contrast: ${colorsRaw.black};
+  --lm-font-color: ${colorsRaw.gray};
+  --lm-font-light-accent: ${colorsRaw.white};
+  --lm-font-dark-accent: ${colorsRaw.grayDark};
+  --lm-font-active: ${colorsRaw.blue};
+  --lm-header-content: ${colorsRaw.blueGray};
+  --lm-active-background: ${colorsRaw.blueLight};
+  --lm-button: ${colorsRaw.grayDark};
+  --lm-text-border: #dfdfe3;
+  --lm-success-text: ${colorsRaw.green};
+  --lm-success-background: ${colorsRaw.greenLight};`
+const rawDarkMode =
+  `--dm-background-color: #313131;
+  --dm-background-light-accent: #404041;
+  --dm-background-contrast: ${colorsRaw.white};
+  --dm-font-color: #d1d1d1;
+  --dm-font-light-accent: #8d8d8d;
+  --dm-font-dark-accent: ${colorsRaw.white};
+  --dm-font-active: ${colorsRaw.black};
+  --dm-header-content: ${colorsRaw.white};
+  --dm-active-background: ${colorsRaw.blueVibrant};
+  --dm-button: ${colorsRaw.blueVibrant};
+  --dm-text-border: #8d8d8d;
+  --dm-success-text: ${colorsRaw.greenVibrant};
+  --dm-success-background: ${colorsRaw.greenLight};`;
 
 const colors = {
   statusDraftText: colorsRaw.purple,
@@ -70,26 +94,27 @@ const colors = {
   statusReviewBackground: colorsRaw.yellow,
   statusReadyText: colorsRaw.green,
   statusReadyBackground: colorsRaw.greenLight,
-  text: colorVars.fontColor,
-  textLight: colorVars.fontLightAccent,
-  textLead: colorVars.fontDarkAccent,
-  background: colorVars.backgroundColor,
-  foreground: colorVars.backgroundDarkAccent,
-  active: colorsRaw.blue,
-  activeBackground: colorsRaw.blueLight,
+  text: 'var(--font-color)',
+  textLight: 'var(--font-light-accent)',
+  textLead: 'var(--font-dark-accent)',
+  background: 'var(--background-color)',
+  foreground: 'var(--background-light-accent)',
+  active: 'var(--font-active)',
+  activeBackground: 'var(--active-background)',
+  headerContent: 'var(--header-content)',
   inactive: colorsRaw.gray,
-  button: colorsRaw.grayDark,
+  button: 'var(--button)',
   buttonText: colorsRaw.white,
-  inputBackground: colorVars.backgroundContrast,
+  inputBackground: 'var(--background-light-accent)',
   infoText: colorsRaw.blue,
   infoBackground: colorsRaw.blueLight,
-  successText: colorsRaw.green,
-  successBackground: colorsRaw.greenLight,
+  successText: 'var(--success-text)',
+  successBackground: 'var(--success-background)',
   warnText: colorsRaw.brown,
   warnBackground: colorsRaw.yellow,
   errorText: colorsRaw.red,
   errorBackground: colorsRaw.redLight,
-  textFieldBorder: '#dfdfe3',
+  textFieldBorder: 'var(--text-border)',
   controlLabel: '#5D626F',
   checkerboardLight: '#f2f2f2',
   checkerboardDark: '#e6e6e6',
@@ -188,7 +213,7 @@ const textBadge = css`
 const card = css`
   ${shadows.dropMain};
   border-radius: 5px;
-  background-color: ${colorVars.backgroundLightAccent};
+  background-color: ${colors.foreground};
 `;
 
 const buttons = {
@@ -439,6 +464,13 @@ const zIndex = {
 };
 
 function GlobalStyles() {
+  // load theme
+  const theme = localStorage.getItem('theme')
+  if (theme !== null)
+  {
+      // ensure theme matches last setting
+      document.documentElement.setAttribute("data-theme", theme);
+  }
   return (
     <Global
       styles={css`
@@ -471,34 +503,32 @@ function GlobalStyles() {
           --font-color: --lm-font-color;
           --font-light-accent: --lm-font-light-accent;
           --font-dark-accent: --lm-font-dark-accent;
+          --font-active: --lm-font-active;
+          --header-content: --lm-header-content;
+          --button: --lm-button;
+          --text-border: --lm-text-border;
+          --success-text: --lm-success-text;
+          --success-background: --lm-success-background;
 
-
-          --lm-background-color: #D9D9D9;
-          --lm-background-light-accent: #b8b8b8;
-          --lm-background-dark-accent: #8d8d8d;
-          --lm-background-contrast: #000;
-          --lm-font-color: #798291;
-          --lm-font-light-accent: #fff;
-          --lm-font-dark-accent: #313d3e;
-
-          --dm-background-color: #313131;
-          --dm-background-light-accent: #404041;
-          --dm-background-dark-accent: #363636;
-          --dm-background-contrast: #fff;
-          --dm-font-color: #d1d1d1;
-          --dm-font-light-accent: #8d8d8d;
-          --dm-font-dark-accent: #fff;
+          ${rawDarkMode}
+          ${rawLightMode}
         }
 
         @media (prefers-color-scheme: dark) {
           :root {
             --background-color: var(--dm-background-color);
             --background-light-accent: var(--dm-background-light-accent);
-            --background-dark-accent: var(--dm-background-light-accent);
             --background-contrast: var(--dm-background-contrast);
             --font-color: var(--dm-font-color);
             --font-light-accent: var(--dm-font-light-accent);
             --font-dark-accent: var(--dm-font-dark-accent);
+            --font-active: var(--dm-font-active);
+            --header-content: var(--dm-header-content);
+            --button: var(--dm-button);
+            --text-border: var(--dm-text-border);
+            --success-text: var(--dm-success-text);
+            --success-background: var(--dm-success-background);
+
             color-scheme: dark;
           }
         }
@@ -506,21 +536,36 @@ function GlobalStyles() {
         [data-theme="dark"] {
           --background-color: var(--dm-background-color);
           --background-light-accent: var(--dm-background-light-accent);
-          --background-dark-accent: var(--dm-background-light-accent);
           --background-contrast: var(--dm-background-contrast);
           --font-color: var(--dm-font-color);
           --font-light-accent: var(--dm-font-light-accent);
           --font-dark-accent: var(--dm-font-dark-accent);
+          --font-active: var(--dm-font-active);
+          --font-active-contrast: var(--dm-font-active-contrast);
+          --header-content: var(--dm-header-content);
+          --active-background: var(--dm-active-background);
+          --button: var(--dm-button);
+          --text-border: var(--dm-text-border);
+          --success-text: var(--dm-success-text);
+          --success-background: var(--dm-success-background);
           color-scheme: dark;
         }
         [data-theme="light"] {
           --background-color: var(--lm-background-color);
           --background-light-accent: var(--lm-background-light-accent);
-          --background-dark-accent: var(--lm-background-light-accent);
           --background-contrast: var(--lm-background-contrast);
           --font-color: var(--lm-font-color);
           --font-light-accent: var(--lm-font-light-accent);
           --font-dark-accent: var(--lm-font-dark-accent);
+          --font-active: var(--lm-font-active);
+          --header-content: var(--lm-header-content);
+          --font-active-contrast: var(--lm-font-active-contrast);
+          --active-background: var(--lm-active-background);
+          --button: var(--lm-button);
+          --text-border: var(--lm-text-border);
+          --success-text: var(--lm-success-text);
+          --success-background: var(--lm-success-background);
+
           color-scheme: light;
         }
 

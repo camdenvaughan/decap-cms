@@ -29,6 +29,7 @@ const I18N_VISIBLE = 'cms.i18n-visible';
 const styles = {
   splitPane: css`
     ${components.card};
+    background-color: ${colors.background};
     border-radius: 0;
     height: 100%;
   `,

@@ -36,14 +36,14 @@ const AvatarPlaceholderIcon = styled(Icon)`
 const AppHeaderSiteLink = styled.a`
   font-size: 14px;
   font-weight: 400;
-  color: #7b8290;
+  color: ${colors.headerContent};
   padding: 10px 16px;
 `;
 
 const AppHeaderTestRepoIndicator = styled.a`
   font-size: 14px;
   font-weight: 400;
-  color: #7b8290;
+  color: ${colors.headerContent};
   padding: 10px 16px;
 `;
 
@@ -58,6 +58,21 @@ function Avatar({ imageUrl }) {
 Avatar.propTypes = {
   imageUrl: PropTypes.string,
 };
+
+function changeLightMode() {
+  document.documentElement.setAttribute("data-theme", 'light');
+  const theme = localStorage.setItem('theme', 'light')
+}
+function changeDarkMode() {
+  document.documentElement.setAttribute("data-theme", 'dark');
+  const theme = localStorage.setItem('theme', 'dark')
+
+}
+function systemTheme() {
+  const checkIsDarkSchemePreferred = () => window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches ?? false;
+  document.documentElement.setAttribute("data-theme", checkIsDarkSchemePreferred ? 'dark' : 'light');
+  localStorage.removeItem("theme");
+}
 
 function SettingsDropdown({ displayUrl, isTestRepo, imageUrl, onLogoutClick, t }) {
   return (
@@ -78,7 +93,7 @@ function SettingsDropdown({ displayUrl, isTestRepo, imageUrl, onLogoutClick, t }
       ) : null}
       <Dropdown
         dropdownTopOverlap="50px"
-        dropdownWidth="100px"
+        dropdownWidth="150px"
         dropdownPosition="right"
         renderButton={() => (
           <AvatarDropdownButton>
@@ -86,6 +101,9 @@ function SettingsDropdown({ displayUrl, isTestRepo, imageUrl, onLogoutClick, t }
           </AvatarDropdownButton>
         )}
       >
+        <DropdownItem label={'light mode'} onClick={changeLightMode} />
+        <DropdownItem label={'dark mode'} onClick={changeDarkMode} />
+        <DropdownItem label={'system theme'} onClick={systemTheme} />
         <DropdownItem label={t('ui.settingsDropdown.logOut')} onClick={onLogoutClick} />
       </Dropdown>
     </React.Fragment>

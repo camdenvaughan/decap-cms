@@ -85,8 +85,8 @@ function bootstrap(opts = {}) {
   function Root() {
     return (
       <>
-        <GlobalStyles />
         <Provider store={store}>
+          <GlobalStyles />
           <ConnectedTranslatedApp />
         </Provider>
       </>

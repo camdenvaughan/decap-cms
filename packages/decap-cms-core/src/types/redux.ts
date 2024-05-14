@@ -420,7 +420,7 @@ export interface CmsConfig {
   };
   error: string | undefined;
   isFetching: boolean;
-  themes: Theme[];
+  themes: ThemeObject[];
 }
 
 export type CmsMediaLibraryOptions = unknown; // TODO: type properly
@@ -470,6 +470,7 @@ export type Config = StaticallyTypedRecord<{
   isFetching?: boolean;
   integrations: List<Integration>;
   collections: List<StaticallyTypedRecord<{ name: string }>>;
+  themes: List<StaticallyTypedRecord<{ name: string }>>;
 }>;
 
 type PagesObject = {
@@ -703,6 +704,7 @@ export interface State {
   search: Search;
   status: Status;
   notifications: NotificationsState;
+  themes: Themes;
 }
 
 export interface Integration {
@@ -812,7 +814,7 @@ export interface EditorialWorkflowAction extends Action<string> {
   };
 }
 
-export interface Theme {
+export interface ThemeObject {
   name: string;
   background_color: string;
   background_light_accent: string;
@@ -825,3 +827,7 @@ export interface Theme {
   info_warning: string;
   info_success: string;
 }
+
+export type Theme = StaticallyTypedRecord<ThemeObject>;
+
+export type Themes = StaticallyTypedRecord<{ [path: string]: Collection & CollectionObject }>;
