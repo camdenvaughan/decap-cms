@@ -29,7 +29,8 @@ const StyledModal = styled(Modal)`
   display: grid;
   grid-template-rows: 120px auto;
   width: calc(${cardOutsideWidth} + 20px);
-  background-color: ${props => props.isPrivate && colors.grayDark};
+  background-color: ${colors.foreground};
+  background-color: ${props => props.isPrivate && colors.inactive};
 
   @media (min-width: 800px) {
     width: calc(${cardOutsideWidth} * 2 + 20px);

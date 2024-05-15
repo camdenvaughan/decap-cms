@@ -15,10 +15,12 @@ const StyledAuthenticationPage = styled.section`
   height: 100vh;
 `;
 
-const CustomIconWrapper = styled.span`
+const AuthIconWrapper = styled.span`
   width: 300px;
   height: auto;
 `;
+
+
 
 const DecapLogoIcon = styled(Icon)`
   height: auto;
@@ -30,17 +32,32 @@ const NetlifyCreditIcon = styled(Icon)`
   bottom: 10px;
 `;
 
-function CustomLogoIcon({ url }) {
+function AuthLogoIcon({ url, companyName }) {
+  let altText = 'Logo'
+  if (companyName) {
+    altText = `${companyName} Logo`
+  }
   return (
-    <CustomIconWrapper>
-      <img src={url} alt="Logo" />
-    </CustomIconWrapper>
+    <AuthIconWrapper>
+      <img src={url} alt={altText} />
+    </AuthIconWrapper>
+  );
+}
+function CustomLogoIcon({ url, companyName }) {
+  let altText = 'Logo'
+  if (companyName) {
+    altText = `${companyName} Logo`
+  }
+  return (
+
+    <svg src={url} alt={altText} />
+
   );
 }
 
-function renderPageLogo(logoUrl) {
+function renderPageLogo(logoUrl, companyName) {
   if (logoUrl) {
-    return <CustomLogoIcon url={logoUrl} />;
+    return <AuthLogoIcon url={logoUrl} companyName={companyName}/>;
   }
   return <DecapLogoIcon size="300px" type="decap-cms" />;
 }
@@ -80,11 +97,12 @@ function AuthenticationPage({
   renderPageContent,
   logoUrl,
   siteUrl,
+  companyName,
   t,
 }) {
   return (
     <StyledAuthenticationPage>
-      {renderPageLogo(logoUrl)}
+      {renderPageLogo(logoUrl, companyName)}
       {loginErrorMessage ? <p>{loginErrorMessage}</p> : null}
       {!renderPageContent
         ? null
@@ -103,6 +121,7 @@ AuthenticationPage.propTypes = {
   onLogin: PropTypes.func,
   logoUrl: PropTypes.string,
   siteUrl: PropTypes.string,
+  companyName: PropTypes.string,
   loginDisabled: PropTypes.bool,
   loginErrorMessage: PropTypes.node,
   renderButtonContent: PropTypes.func,
@@ -111,3 +130,4 @@ AuthenticationPage.propTypes = {
 };
 
 export default AuthenticationPage;
+export { CustomLogoIcon } ;

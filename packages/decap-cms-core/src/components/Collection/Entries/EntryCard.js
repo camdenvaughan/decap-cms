@@ -60,6 +60,7 @@ const ListCardTitle = styled.h2`
 
 const CardHeading = styled.h2`
   margin: 0 0 2px;
+  text-align: center;
 `;
 
 const CardBody = styled.div`
@@ -75,9 +76,10 @@ const CardBody = styled.div`
     z-index: ${zIndex.zIndex1};
     bottom: 0;
     left: -20%;
-    height: 140%;
+    height: 100%;
     width: 140%;
-    box-shadow: inset 0 -15px 24px ${colorsRaw.white};
+    ${props => props.hasImage && `box-shadow: 0 0px 24px ${colors.foreground};`}
+    
   }
 `;
 
@@ -113,11 +115,11 @@ function EntryCard({
     return (
       <GridCard>
         <GridCardLink to={path}>
+          {image ? <CardImage src={getAsset(image, imageField).toString()} /> : null}
           <CardBody hasImage={image}>
             {collectionLabel ? <CollectionLabel>{collectionLabel}</CollectionLabel> : null}
             <CardHeading>{summary}</CardHeading>
           </CardBody>
-          {image ? <CardImage src={getAsset(image, imageField).toString()} /> : null}
         </GridCardLink>
       </GridCard>
     );

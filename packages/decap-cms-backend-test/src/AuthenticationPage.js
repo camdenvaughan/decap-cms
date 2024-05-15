@@ -38,17 +38,21 @@ const CustomIconWrapper = styled.span`
   height: auto;
 `;
 
-function CustomLogoIcon({ url }) {
+function CustomLogoIcon({ url, companyName }) {
+  let altText = 'Logo'
+  if (companyName) {
+    altText = `${companyName} Logo`
+  }
   return (
     <CustomIconWrapper>
-      <img src={url} alt="Logo" />
+      <img src={url} alt={altText} />
     </CustomIconWrapper>
   );
 }
 
-function renderPageLogo(logoUrl) {
+function renderPageLogo(logoUrl, companyName) {
   if (logoUrl) {
-    return <CustomLogoIcon url={logoUrl} />;
+    return <CustomLogoIcon url={logoUrl} companyName={companyName} />;
   }
 }
 
@@ -80,7 +84,7 @@ export default class AuthenticationPage extends React.Component {
 
     return (
       <StyledAuthenticationPage>
-        {renderPageLogo(config.logo_path)}
+        {renderPageLogo(config.logo_path, config.company_name)}
 
         <LoginButton disabled={inProgress} onClick={this.handleLogin}>
           {inProgress ? t('auth.loggingIn') : t('auth.login')}

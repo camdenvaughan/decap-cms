@@ -161,6 +161,8 @@ function getConfigSchema() {
       site_url: { type: 'string', examples: ['https://example.com'] },
       display_url: { type: 'string', examples: ['https://example.com'] },
       logo_url: { type: 'string', examples: ['https://example.com/images/logo.svg'] },
+      logo_path: { type: 'string', examples: ['/logo.svg'] },
+      company_name: {type: 'string', examples: ['Google', 'Microsoft'] },
       show_preview_links: { type: 'boolean' },
       media_folder: { type: 'string', examples: ['assets/uploads'] },
       public_folder: { type: 'string', examples: ['/uploads'] },

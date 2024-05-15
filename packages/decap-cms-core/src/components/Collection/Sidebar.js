@@ -15,7 +15,7 @@ const styles = {
   sidebarNavLinkActive: css`
     color: ${colors.active};
     background-color: ${colors.activeBackground};
-    border-left-color: #4863c6;
+    border-left-color: ${colors.active};
   `,
 };
 
@@ -50,7 +50,7 @@ const SidebarNavLink = styled(NavLink)`
   font-weight: 500;
   align-items: center;
   padding: 8px 18px;
-  border-left: 2px solid #fff;
+  border-left: 2px solid ${colors.text};
   z-index: -1;
 
   ${Icon} {

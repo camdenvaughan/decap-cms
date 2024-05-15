@@ -71,7 +71,8 @@ const rawLightMode =
   --lm-button: ${colorsRaw.grayDark};
   --lm-text-border: #dfdfe3;
   --lm-success-text: ${colorsRaw.green};
-  --lm-success-background: ${colorsRaw.greenLight};`
+  --lm-success-background: ${colorsRaw.greenLight};
+  --lm-control-label: '#5D626F';`
 const rawDarkMode =
   `--dm-background-color: #313131;
   --dm-background-light-accent: #404041;
@@ -79,13 +80,14 @@ const rawDarkMode =
   --dm-font-color: #d1d1d1;
   --dm-font-light-accent: #8d8d8d;
   --dm-font-dark-accent: ${colorsRaw.white};
-  --dm-font-active: ${colorsRaw.black};
+  --dm-font-active: ${colorsRaw.white};
   --dm-header-content: ${colorsRaw.white};
   --dm-active-background: ${colorsRaw.blueVibrant};
   --dm-button: ${colorsRaw.blueVibrant};
   --dm-text-border: #8d8d8d;
   --dm-success-text: ${colorsRaw.greenVibrant};
-  --dm-success-background: ${colorsRaw.greenLight};`;
+  --dm-success-background: ${colorsRaw.greenLight};
+  --dm-control-label: ${colorsRaw.black};`;
 
 const colors = {
   statusDraftText: colorsRaw.purple,
@@ -115,7 +117,7 @@ const colors = {
   errorText: colorsRaw.red,
   errorBackground: colorsRaw.redLight,
   textFieldBorder: 'var(--text-border)',
-  controlLabel: '#5D626F',
+  controlLabel: 'var(--control-label)',
   checkerboardLight: '#f2f2f2',
   checkerboardDark: '#e6e6e6',
   mediaDraftText: colorsRaw.purple,
@@ -509,6 +511,7 @@ function GlobalStyles() {
           --text-border: --lm-text-border;
           --success-text: --lm-success-text;
           --success-background: --lm-success-background;
+          --control-label: --lm-control-label;
 
           ${rawDarkMode}
           ${rawLightMode}
@@ -528,6 +531,7 @@ function GlobalStyles() {
             --text-border: var(--dm-text-border);
             --success-text: var(--dm-success-text);
             --success-background: var(--dm-success-background);
+            --control-label: var(--dm-control-label);
 
             color-scheme: dark;
           }
@@ -548,6 +552,8 @@ function GlobalStyles() {
           --text-border: var(--dm-text-border);
           --success-text: var(--dm-success-text);
           --success-background: var(--dm-success-background);
+          --control-label: var(--dm-control-label);
+
           color-scheme: dark;
         }
         [data-theme="light"] {
@@ -565,6 +571,7 @@ function GlobalStyles() {
           --text-border: var(--lm-text-border);
           --success-text: var(--lm-success-text);
           --success-background: var(--lm-success-background);
+          --control-label: var(--lm-control-label);
 
           color-scheme: light;
         }

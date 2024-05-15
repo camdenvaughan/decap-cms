@@ -45,9 +45,11 @@ import iconSettings from './settings.svg';
 import iconUser from './user.svg';
 import iconWorkflow from './workflow.svg';
 import iconWrite from './write.svg';
+import { store } from 'decap-cms-core/src/redux';
 
 const iconix = iconAdd;
-
+const logo = store.getState().config.logo_path;
+console.log(logo)
 const images = {
   add: iconix,
   'add-with': iconAddWith,

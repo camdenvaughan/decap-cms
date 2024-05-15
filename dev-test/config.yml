@@ -3,6 +3,7 @@ backend:
 
 site_url: https://example.com
 logo_path: /logo.svg
+company_name: Company
 publish_mode: editorial_workflow
 media_folder: assets/uploads
 
@@ -279,23 +280,3 @@ collections: # A list of collections the CMS should be able to edit
         name: title
         widget: string
     meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
-
-themes:
-  - name: dark
-    background_color: '#313131'
-    background_light_accent: '#404041'
-    background_dark_accent: '#363636'
-    background_contrast: '#fff'
-    font_color: '#d1d1d1'
-    font_light_accent: '#8d8d8d'
-    font_dark_accent: '#fff'
-
-  
-  - name: rainbow
-    background_color: 'red'
-    background_light_accent: 'orange'
-    background_dark_accent: 'yellow'
-    background_contrast: 'green'
-    font_color: 'blue'
-    font_light_accent: 'indigo'
-    font_dark_accent: 'violet'
