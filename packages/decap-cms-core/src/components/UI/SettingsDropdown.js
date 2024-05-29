@@ -6,6 +6,7 @@ import { translate } from 'react-polyglot';
 import { Icon, Dropdown, DropdownItem, DropdownButton, colors } from 'decap-cms-ui-default';
 
 import { stripProtocol } from '../../lib/urlHelper';
+import { store } from '../../redux';
 
 const styles = {
   avatarImage: css`
@@ -61,11 +62,14 @@ Avatar.propTypes = {
 
 function changeLightMode() {
   document.documentElement.setAttribute("data-theme", 'light');
+
   const theme = localStorage.setItem('theme', 'light')
+  store.getState().previewDarkMode = false;
 }
 function changeDarkMode() {
   document.documentElement.setAttribute("data-theme", 'dark');
   const theme = localStorage.setItem('theme', 'dark')
+  store.getState().previewDarkMode = true;
 
 }
 function systemTheme() {

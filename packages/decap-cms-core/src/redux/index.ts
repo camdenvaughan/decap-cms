@@ -10,9 +10,10 @@ import type { AnyAction } from 'redux';
 import type { State } from '../types/redux';
 import type { Reducer } from 'react';
 
+const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
 const store = createStore<State | undefined, AnyAction, unknown, unknown>(
   createRootReducer() as unknown as Reducer<State | undefined, AnyAction>,
-  composeWithDevTools(applyMiddleware(thunkMiddleware as ThunkMiddleware<State>, waitUntilAction)),
+  composeEnhancers(applyMiddleware(thunkMiddleware as ThunkMiddleware<State>, waitUntilAction)),
 );
 
 export { store };

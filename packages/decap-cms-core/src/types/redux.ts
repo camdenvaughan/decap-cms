@@ -703,6 +703,7 @@ export interface State {
   search: Search;
   status: Status;
   notifications: NotificationsState;
+  previewDarkMode: boolean;
 }
 
 export interface Integration {

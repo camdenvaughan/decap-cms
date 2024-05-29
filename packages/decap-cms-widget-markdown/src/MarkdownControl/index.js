@@ -118,6 +118,7 @@ export default class MarkdownControl extends React.Component {
           pendingFocus={pendingFocus && this.setFocusReceived}
           t={t}
         />
+        <h1>hello</h1>
       </div>
     );
     return mode === 'rich_text' ? visualEditor : rawEditor;

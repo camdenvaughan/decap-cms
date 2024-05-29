@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WidgetPreviewContainer } from 'decap-cms-ui-default';
+import { WidgetPreviewContainer, colors } from 'decap-cms-ui-default';
 import DOMPurify from 'dompurify';
+import { store } from 'decap-cms-core/src/redux';
 
 import { markdownToHtml } from './serializers';
 class MarkdownPreview extends React.Component {
@@ -16,10 +17,21 @@ class MarkdownPreview extends React.Component {
     if (value === null) {
       return null;
     }
-
+    const checkIsDarkSchemePreferred = () => window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches ?? false;
+    let darkMode = checkIsDarkSchemePreferred;
+    if (document.documentElement.hasAttribute("preview-theme"))
+    {
+      darkMode = document.documentElement.getAttribute("preview-theme") === "dark"
+    }
+    const css = `
+    <style>
+    body {
+      background-color: ${darkMode ? 'var(--dm-background)' : 'var(--lm-background)'};
+    }
+    </style>`
     const html = markdownToHtml(value, { getAsset, resolveWidget }, getRemarkPlugins?.());
-    const toRender = field?.get('sanitize_preview', false) ? DOMPurify.sanitize(html) : html;
-
+    const toRender = (field?.get('sanitize_preview', false) ? DOMPurify.sanitize(html) : html) + css;
+    
     return <WidgetPreviewContainer dangerouslySetInnerHTML={{ __html: toRender }} />;
   }
 }

@@ -86,6 +86,10 @@ export const REMOVE_DRAFT_ENTRY_MEDIA_FILE = 'REMOVE_DRAFT_ENTRY_MEDIA_FILE';
 
 export const CHANGE_VIEW_STYLE = 'CHANGE_VIEW_STYLE';
 
+export const THEME_CHANGE_LIGHT = 'THEME_CHANGE_LIGHT';
+export const THEME_CHANGE_DARK = 'THEME_CHANGE_LIGHT';
+export const THEME_CHANGE_SYSTEM = 'THEME_CHANGE_LIGHT';
+
 /*
  * Simple Action Creators (Internal)
  * We still need to export them for tests

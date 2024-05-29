@@ -216,7 +216,7 @@
     CMS.registerPreviewTemplate("posts", PostPreview);
     CMS.registerPreviewTemplate("general", GeneralPreview);
     CMS.registerPreviewTemplate("authors", AuthorsPreview);
-    CMS.registerPreviewStyle(previewStyles, { raw: true });
+    CMS.registerPreviewStyle("/global.css");
     // Pass the name of a registered control to reuse with a new widget preview.
     CMS.registerWidget("relationKitchenSinkPost", "relation", RelationKitchenSinkPostPreview);
     CMS.registerEditorComponent({
