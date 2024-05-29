@@ -165,6 +165,7 @@ export default class GitGatewayAuthenticationPage extends React.Component {
           <AuthenticationPage
             logoUrl={config.logo_url}
             siteUrl={config.site_url}
+            companyName={config.company_name}
             onLogin={this.handleIdentity}
             renderPageContent={() => (
               <a

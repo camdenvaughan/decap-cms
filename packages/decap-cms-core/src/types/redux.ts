@@ -396,6 +396,7 @@ export interface CmsConfig {
   site_url?: string;
   display_url?: string;
   logo_url?: string;
+  company_name?: string;
   show_preview_links?: boolean;
   media_folder?: string;
   public_folder?: string;

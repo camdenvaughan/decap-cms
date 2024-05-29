@@ -2,7 +2,8 @@ backend:
   name: test-repo
 
 site_url: https://example.com
-
+logo_url: /logo.svg
+company_name: Big Boat
 publish_mode: editorial_workflow
 media_folder: assets/uploads
 

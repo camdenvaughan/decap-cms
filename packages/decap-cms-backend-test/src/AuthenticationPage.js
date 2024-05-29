@@ -32,6 +32,28 @@ const LoginButton = styled.button`
     margin-right: 18px;
   }
 `;
+const CustomIconWrapper = styled.span`
+  width: 300px;
+  height: auto;
+`;
+
+function CustomLogoIcon({ url, companyName }) {
+  let altText = 'Logo'
+  if (companyName) {
+    altText = `${companyName} Logo`
+  }
+  return (
+    <CustomIconWrapper>
+      <img src={url} alt={altText} />
+    </CustomIconWrapper>
+  );
+}
+
+function renderPageLogo(logoUrl, companyName) {
+  if (logoUrl) {
+    return <CustomLogoIcon url={logoUrl} companyName={companyName} />;
+  }
+}
 
 export default class AuthenticationPage extends React.Component {
   static propTypes = {
@@ -61,7 +83,7 @@ export default class AuthenticationPage extends React.Component {
 
     return (
       <StyledAuthenticationPage>
-        <PageLogoIcon size="300px" type="decap-cms" />
+        {renderPageLogo(config.logo_url, config.company_name)}
         <LoginButton disabled={inProgress} onClick={this.handleLogin}>
           {inProgress ? t('auth.loggingIn') : t('auth.login')}
         </LoginButton>

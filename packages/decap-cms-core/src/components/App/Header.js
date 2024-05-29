@@ -17,6 +17,7 @@ import {
   zIndex,
 } from 'decap-cms-ui-default';
 import { connect } from 'react-redux';
+import { store } from '../../redux';
 
 import { SettingsDropdown } from '../UI';
 import { checkBackendStatus } from '../../actions/status';
@@ -71,7 +72,7 @@ const AppHeaderButton = styled.button`
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     ${styles.buttonActive};
 
     ${Icon} {
@@ -112,6 +113,16 @@ const AppHeaderNavList = styled.ul`
   display: flex;
   margin: 0;
   list-style: none;
+`;
+
+const HeaderLogo = styled.div`
+  width: ${lengths.topBarHeight};
+  height: ${lengths.topBarHeight};
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 class Header extends React.Component {
@@ -169,6 +180,14 @@ class Header extends React.Component {
         <AppHeaderContent>
           <nav>
             <AppHeaderNavList>
+              {
+                store.getState().config.logo_url && <li>
+                <HeaderLogo>
+                  <img src={store.getState().config.logo_url} alt={`${store.getState().config.company_name} Company Logo`} />
+                </HeaderLogo>
+              </li>
+              }
+              
               <li>
                 <AppHeaderNavLink
                   to="/"
