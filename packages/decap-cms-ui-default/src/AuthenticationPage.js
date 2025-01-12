@@ -116,4 +116,4 @@ AuthenticationPage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default AuthenticationPage;
+export { AuthenticationPage as default, renderPageLogo };
